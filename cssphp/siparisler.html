@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Eczaci Home - Siparişler</title>
+</head>
+<body style="background-image: url('arkaplan.jpg'); background-size:
+cover; background-position: center; background-repeat: no-repeat;" >
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="Untitled_logo_1_free-file (1).jpg" alt="Logo">
+            </div>
+           
+            <div class="header-right">
+              
+                <a href="eczaci_iletisim.html">İletişim</a>
+                <input type="text" placeholder="Ara...">
+            </div>
+        </div>
+    </header>
+
+    <div class="topnav" id="myTopnav">
+        <a href="eczaci_home.php" class="active">Anasayfa</a>
+        <a href="siparisler.html">Siparişler</a>
+    
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-user-alt  "></i>
+            </button>
+            <div class="dropdown-content" >
+                <a href="eczaci_profil.php">Profil</a>
+                <a href="eczaci_guncelle_islem.php">Profili Güncelle</a>
+            </div>
+        </div>
+    
+        <div class="dropdown" >
+            <button class="dropbtn" id="depyon" >
+                <i class="fas fa-medkit"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="ilac_listele.php">İlaçları Listele</a>
+                <a href="ilac_ekle.php">İlaçları Ekle</a>
+                <a href="ilac_guncelle.php">İlaçları Güncelle</a>
+                <a href="ilac_sil.php">İlaçları Sil</a>
+            </div>
+        </div>
+    
+        <a href='ilkgiris.html'  class='cikis'><i class='fas fa-sign-out-alt'></i> </a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        
+    </div>
+    </header>
+
+    <section>
+        <h2>Tüm Siparişler</h2>
+        <ul id="siparis-listesi">
+            <!-- Sipariş listesi burada görüntülenebilir -->
+            <li>
+                <p>Sipariş ID: 123</p>
+                <p>Ürün: İlaç 1</p>
+                <p>Durum: Hazırlanıyor</p>
+                <button onclick="updateOrderStatus(123, 'Gönderildi')">Gönderildi</button>
+                <button onclick="updateOrderStatus(123, 'İptal Edildi')"  class="iptal">İptal Edildi</button>
+            </li>
+            <li>
+                <p>Sipariş ID: 123</p>
+                <p>Ürün: İlaç 1</p>
+                <p>Durum: Hazırlanıyor</p>
+                <button onclick="updateOrderStatus(123, 'Gönderildi')" >Gönderildi</button>
+                <button onclick="updateOrderStatus(123, 'İptal Edildi')"  class="iptal">İptal Edildi</button>
+            </li>
+            <li>
+                <p>Sipariş ID: 123</p>
+                <p>Ürün: İlaç 1</p>
+                <p>Durum: Hazırlanıyor</p>
+                <button onclick="updateOrderStatus(123, 'Gönderildi')">Gönderildi</button>
+                <button onclick="updateOrderStatus(123, 'İptal Edildi')"  class="iptal">İptal Edildi</button>
+            </li>
+            <li>
+                <p>Sipariş ID: 123</p>
+                <p>Ürün: İlaç 1</p>
+                <p>Durum: Hazırlanıyor</p>
+                <button onclick="updateOrderStatus(123, 'Gönderildi')">Gönderildi</button>
+                <button onclick="updateOrderStatus(123, 'İptal Edildi')"  class="iptal">İptal Edildi</button>
+            </li>
+            <li>
+                <p>Sipariş ID: 123</p>
+                <p>Ürün: İlaç 1</p>
+                <p>Durum: Hazırlanıyor</p>
+                <button onclick="updateOrderStatus(123, 'Gönderildi')">Gönderildi</button>
+                <button onclick="updateOrderStatus(123, 'İptal Edildi')"  class="iptal">İptal Edildi</button>
+            </li>
+            
+            <!-- Diğer siparişler buraya eklenebilir -->
+        </ul>
+    </section>
+
+    <footer>
+        <div class="content-box">
+            <h3>İçerik 1</h3>
+            <p>Hakkında daha fazla bilgi</p>
+        </div>
+        <div class="content-box">
+            <h3>İçerik 2</h3>
+            <p>Ön sipariş & Kurye hizmetimiz</p>
+        </div>
+        <div class="content-box">
+            <h3>İçerik 3</h3>
+            <p>Teslimat masrafları ve nakliye masrafları</p>
+        </div>
+        <div class="content-box">
+            <h3>İçerik 4</h3>
+            <p>Künye (Impressum)</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

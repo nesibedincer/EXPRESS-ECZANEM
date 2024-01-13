@@ -1,0 +1,86 @@
+<!-- Bakiye Yükleme Sayfası -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hasta Profil - Bakiye</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="Untitled_logo_1_free-file (1).jpg" alt="Logo">
+            </div>
+            
+            <div class="header-right">
+                <a href="hakkimizda.html">Hakkımızda</a>
+                <a href="iletisim.html">İletişim</a>
+                <input type="text" placeholder="Ara...">
+            </div>
+        </div>
+    </header>
+
+    <nav>
+    <ul>
+        <li><a href="hasta_home.php">Ana Sayfa</a></li>
+        <li><a href="hasta_profil.php">Profilim</a></li>
+		
+        <li><a href="hasta_ilacsip.php">Sipariş Ver</a></li>
+        <li><a href="hasta_siptakip.php">Siparişim Nerede</a></li>
+        <li><a href="bakiye.php" class="bakiye">Bakiye</a></li>
+        <li><a href="" class="sepet">Sepetim</a></li>
+        <li><a href="ilkgiris.php"  class="cikis">Çıkış</a></li>
+       
+    </ul>
+</nav>
+
+    <section id="bakiye">
+        <h2>Bakiye İşlemleri</h2>
+        
+        <!-- Kullanıcının mevcut bakiyesini gösteren alan -->
+        <div id="bakiye-goster" style="margin-bottom: 20px;">
+            <p>Mevcut Bakiye:</p>
+            <span id="mevcut-bakiye">500 TL</span>
+        </div>
+
+        <!-- Bakiye yükleme formu -->
+        <form id="bakiye-form" onsubmit="redirectToPaymentPage(event)">
+            <label for="bakiye-miktar">Yüklenecek Miktar:</label>
+            <input type="text" id="bakiye-miktar" name="bakiye-miktar" required class="girdi">
+
+            <button type="submit" class="btn">Bakiye Yükle</button>
+        </form>
+    </section>
+    
+    <footer>
+        &copy; 2023 Hasta Sitem
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function redirectToPaymentPage(event) {
+            event.preventDefault();
+
+            // Kullanıcının girmiş olduğu bakiye miktarını al
+            var yuklenecekMiktar = parseFloat(document.getElementById('bakiye-miktar').value);
+
+            // Yeni bakiyeyi hesapla
+            var mevcutBakiye = parseFloat(document.getElementById('mevcut-bakiye').innerText);
+            var yeniBakiye = mevcutBakiye + yuklenecekMiktar;
+
+            // Kullanıcının bakiyesini güncelle
+            document.getElementById('mevcut-bakiye').innerText = yeniBakiye.toFixed(2);
+
+            // Kullanıcıyı ödeme sayfasına yönlendir
+            window.location.href = "odeme_sayfasi.html";
+        }
+
+        function logout() {
+            // Kullanıcıyı çıkış yapmış gibi bir işlem yapabilirsiniz.
+            alert('Çıkış yapıldı.');
+        }
+    </script>
+</body>
+</html>

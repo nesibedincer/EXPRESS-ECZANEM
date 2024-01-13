@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Eczacı Profil</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="Untitled_logo_1_free-file (1).jpg" alt="Logo">
+            </div>
+            
+            <div class="header-right">
+                <a href="hakkimizda.html">Hakkımızda</a>
+                <a href="iletisim.html">İletişim</a>
+                <input type="text" placeholder="Ara...">
+            </div>
+        </div>
+    </header>
+
+    <div class='topnav' id='myTopnav'>
+  <a href='kurye_home.php' class='active'>Anasayfa</a>
+  <a href='kurye_siptakip.php'>Sipariş Bildirimi</a>
+  <a href='ilkgiris.php' class='cikis'>Çıkış</a>
+  <div class='dropdown'>
+    <button class='dropbtn'>Profil
+      <i class='fa fa-caret-down'></i>
+    </button>
+    <div class='dropdown-content'>
+      <a href='kurye_profil.php'>Profil</a>
+      <a href='kurye_guncelle_islem.php'>Profili Güncelle</a>
+    </div>
+  </div>
+  <a href='javascript:void(0);' class='icon' onclick='myFunction()'>&#9776;</a>
+</div>
+
+
+
+    <section id="login-section">
+        <div class="login-container">
+            <h1>Profil Bilgileri</h1>
+            <?php
+            session_start();
+
+            $list = new PDO("mysql:host=localhost;dbname=eczanem", 'root', '');
+            if (!$list) {
+                die("Veritabanına bağlanılamadı.");
+            }
+
+            if (isset($_POST['sil'])) {
+                $giris_tc = $_SESSION['tc'];
+                $sil = $list->prepare("DELETE FROM kisiler WHERE tc = :tc");
+                $sil->bindParam(':tc', $giris_tc);
+                $sil->execute();
+
+                if ($sil) {
+                    echo "<br>Kaydınız Silinmiştir. Yönlendiriliyorsunuz...";
+                    header("Refresh: 3; URL=ilkgiris.php");
+                } else {
+                    echo "Kayıt silme hatası!";
+                }
+            }
+
+            $giris_tc = $_SESSION['tc'];
+            $listele = $list->prepare("SELECT * FROM kisiler WHERE tc = :tc");
+            $listele->bindParam(':tc', $giris_tc);
+            $listele->execute();
+
+            echo "<form id='login-form' onsubmit='login(event)' method='post' action=''>";
+            while ($row = $listele->fetch()) {
+                echo "<h3> Adı Soyadı: " . $row['adi_soyadi'] . "</br>" . "</h3>";
+                echo "<h3> Şifre: " . $row['sifre'] . "</br>" . "</h3>";
+                echo "<h3> TC Kimlik: " . $row['tc'] . "</br>" . "</h3>";
+                echo "<h3> Telefon Numarası: " . $row['tel'] . "</br>" . "</h3>";
+                echo "<h3> E-posta: " . $row['eposta'] . "</br>" . "</h3>";
+            }
+
+            echo "<button type='submit' name='sil' class='btn'>Profilimi Sil</button>";
+            echo "</form>";
+            ?>
+        </div>
+    </section>
+
+    <footer>
+        <div class="content-box">
+            <h3>İçerik 1</h3>
+            <p>Hakkında daha fazla bilgi</p>
+        </div>
+        <div class="content-box">
+            <h3>İçerik 2</h3>
+            <p>Ön sipariş & Kurye hizmetimiz</p>
+        </div>
+        <div class="content-box">
+            <h3>İçerik 3</h3>
+            <p>Teslimat masrafları ve nakliye masrafları</p>
+        </div>
+        <div class="content-box">
+            <h3>İçerik 4</h3>
+            <p>Künye (Impressum)</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Eczacı Profil</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="Untitled_logo_1_free-file (1).jpg" alt="Logo">
+            </div>
+            
+            <div class="header-right">
+                <a href="hakkimizda.html">Hakkımızda</a>
+                <a href="iletisim.html">İletişim</a>
+                <input type="text" placeholder="Ara...">
+            </div>
+        </div>
+    </header>
+
+    <div class="topnav" id="myTopnav">
+    <a href="eczaci_home.php" class="active">Anasayfa</a>
+    <a href="hasta_ilacsip.php">Siparişler</a>
+
+    <div class="dropdown">
+        <button class="dropbtn">Profil
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="profil.php">Profil</a>
+            <a href="eczaci_guncelle_islem.php">Profili Güncelle</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Depo Yönetimi
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="ilac_listele.php">İlaçları Listele</a>
+            <a href="ilac_ekle.php">İlaçları Ekle</a>
+            <a href="ilac_guncelle.php">İlaçları Güncelle</a>
+            <a href="ilac_sil.php">İlaçları Sil</a>
+        </div>
+    </div>
+
+    <a href="ilkgiris.php" class="cikis">Çıkış</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+
+    <section id="login-section">
+        <div class="login-container">
+            <h1>Profil Bilgileri</h1>
+            <?php
+            session_start();
+
+            $list = new PDO("mysql:host=localhost;dbname=eczanem", 'root', '');
+            if (!$list) {
+                die("Veritabanına bağlanılamadı.");
+            }
+
+            if (isset($_POST['sil'])) {
+                $giris_tc = $_SESSION['tc'];
+                $sil = $list->prepare("DELETE FROM kisiler WHERE tc = :tc");
+                $sil->bindParam(':tc', $giris_tc);
+                $sil->execute();
+
+                if ($sil) {
+                    echo "<br>Kaydınız Silinmiştir. Yönlendiriliyorsunuz...";
+                    header("Refresh: 3; URL=ilkgiris.php");
+                } else {
+                    echo "Kayıt silme hatası!";
+                }
+            }
+
+            $giris_tc = $_SESSION['tc'];
+            $listele = $list->prepare("SELECT * FROM kisiler WHERE tc = :tc");
+            $listele->bindParam(':tc', $giris_tc);
+            $listele->execute();
+
+            echo "<form id='login-form' onsubmit='login(event)' method='post' action=''>";
+            while ($row = $listele->fetch()) {
+                echo "<h3> Adı Soyadı: " . $row['adi_soyadi'] . "</br>" . "</h3>";
+                echo "<h3> Şifre: " . $row['sifre'] . "</br>" . "</h3>";
+                echo "<h3> TC Kimlik: " . $row['tc'] . "</br>" . "</h3>";
+                echo "<h3> Telefon Numarası: " . $row['tel'] . "</br>" . "</h3>";
+                echo "<h3> E-posta: " . $row['eposta'] . "</br>" . "</h3>";
+            }
+
+            echo "<button type='submit' name='sil' class='btn'>Profilimi Sil</button>";
+            echo "</form>";
+            ?>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2023 Hasta Sitem
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
